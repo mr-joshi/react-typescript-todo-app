@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useRef, useEffect } from 'react'
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import {Todo} from '../models/model'
@@ -32,12 +32,16 @@ const SingleTodo = ({todos,setTodos,todo}:props) => {
       const handleDelete=(id:number)=>{
          setTodos(todos.filter((todo)=>todo.id!==id))
       }
+
+      const inputRef=useRef<HTMLInputElement>(null);
+   
   return (
     <form className='todos__single' onSubmit={(e)=>{
         handleSubmit(e,todo.id);
     }}>
         {edit?(
             <input  
+            
             value={value}
             onChange={
                 (e)=>{
